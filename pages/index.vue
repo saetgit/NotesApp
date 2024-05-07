@@ -5,7 +5,6 @@ const { supabase } = useSupabase();
 <template>
     <div>
         <div class="container">
-            {{ supabase }}
             <AuthCard />
         </div>
     </div>

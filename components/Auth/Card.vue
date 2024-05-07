@@ -1,21 +1,30 @@
 <script setup lang="ts">
-const authState=ref<"login"|"signup">("login")
+const authState = ref<"login" | "signup">("login")
 
-const toggleAuthState=()=>{
-    if(authState.value==="login")authState.value="signup";
-    else authState.value="login"
+const { signUp } = useAuth();
+const toggleAuthState = () => {
+    if (authState.value === "login") authState.value = "signup";
+    else authState.value = "login"
+}
+
+const handelSubmit = () => {
+    signUp({ email: "blumbercourse@gmail.com", password: "password" })
 }
 </script>
 <template>
     <div>
         <NCard class="card">
-            <h3>{{authState}}</h3>
+            <h3>{{ authState }}</h3>
             <div class="input-container">
                 <input placeholder="Email" />
                 <input placeholder="password" />
             </div>
-            <NButton>Submit</NButton>
-            <p @click="toggleAuthState">{{toggleAuthState==="login"?"Dont have an account? Create one now":"Already have an Account?go ahead a login"}}</p>
+            <NButton @click="handelSubmit">Submit</NButton>
+            <p @click="toggleAuthState">{{
+                authState === "login"
+                    ? "Don't have an account? Create one now"
+                    : "Already have an account? Go ahead an log in"
+                }}</p>
         </NCard>
     </div>
 </template>
@@ -40,10 +49,11 @@ const toggleAuthState=()=>{
     margin-bottom: 0.3rem;
     padding: 0.2rem;
     outline: none;
-    border: 0.1rem solid rgba(0,0,0,0.1);
+    border: 0.1rem solid rgba(0, 0, 0, 0.1);
     border-radius: 0.2rem
 }
-p{
+
+p {
     color: blue;
     font-size: 0.5rem;
     cursor: pointer;
