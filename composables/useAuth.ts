@@ -1,5 +1,6 @@
 const useAuth = () => {
     const user = useState("user", () => null);
+    const router = useRouter();
     const { supabase } = useSupabase();
   
     supabase.auth.onAuthStateChange((e, session) => {
@@ -14,7 +15,7 @@ const useAuth = () => {
         },
         {
           data: metadata,
-          redirectTo: `${window.location.origin}/profile?source=email`,
+          redirectTo: `${window.location.origin}/myprofile?source=email`,
         }
       );
       if (error) throw error;
@@ -33,6 +34,11 @@ const useAuth = () => {
     const signOut = async () => {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
+      router.push("/");
+    };
+  
+    const isLoggedIn = () => {
+      return !!user.value;
     };
   
     return {
@@ -40,6 +46,7 @@ const useAuth = () => {
       signUp,
       signIn,
       signOut,
+      isLoggedIn,
     };
   };
   

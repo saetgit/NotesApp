@@ -1,5 +1,6 @@
 <template>
     <div>
-      <h1>Notes App Profile</h1>
+      <Nav />
+      <slot />
     </div>
   </template>

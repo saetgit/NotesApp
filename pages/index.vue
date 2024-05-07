@@ -1,23 +1,22 @@
-import type { AuthCard } from '#build/components';
 <script setup lang="ts">
 const { supabase } = useSupabase();
 </script>
+
 <template>
-    <div>
-        <div class="container">
-            <AuthCard />
-        </div>
+  <div>
+    <div class="container">
+      <AuthCard />
     </div>
+  </div>
 </template>
 
 <style scoped>
 .container {
-    max-width: 50%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-
+  max-width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
 }
 </style>
